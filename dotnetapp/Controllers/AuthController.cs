@@ -50,8 +50,8 @@ namespace Auth.Controller
             {
                 return BadRequest();
             }
-            if (await CheckEmailExistAdmin(adminobj.email)) return BadRequest(new { Message = "Email Already Exist!!! " });
-            if (await CheckEmailExistUser(adminobj.email)) return BadRequest(new { Message = "Email Already Exist!!! " });
+           // if (await CheckEmailExistAdmin(adminobj.email)) return BadRequest(new { Message = "Email Already Exist!!! " });
+            //if (await CheckEmailExistUser(adminobj.email)) return BadRequest(new { Message = "Email Already Exist!!! " });
             await _context.Admin.AddAsync(adminobj);
             await _context.SaveChangesAsync();
             var admin = new AdminModel
@@ -76,8 +76,8 @@ namespace Auth.Controller
             {
                 return BadRequest();
             }
-            if (await CheckEmailExistAdmin(userobj.email)) return BadRequest(new { Message = "Email Already Exist!!! " });
-            if (await CheckEmailExistUser(userobj.email)) return BadRequest(new { Message = "Email Already Exist!!! " });
+            //if (await CheckEmailExistAdmin(userobj.email)) return BadRequest(new { Message = "Email Already Exist!!! " });
+            //if (await CheckEmailExistUser(userobj.email)) return BadRequest(new { Message = "Email Already Exist!!! " });
             await _context.User.AddAsync(userobj);
             await _context.SaveChangesAsync();
             var loginObj = new LoginModel
@@ -129,14 +129,14 @@ namespace Auth.Controller
             var token = jwtTokenHandler.CreateToken(tokenDescriptor);
             return jwtTokenHandler.WriteToken(token);
         }
-         private Task<bool> CheckEmailExistUser(string Email)
-        {
-            return (_context.User.AnyAsync(x => x.email == Email));
-        }
-        private Task<bool> CheckEmailExistAdmin(string Email)
-        {
-            return (_context.Admin.AnyAsync(x => x.email == Email));
-        }
+        //  private Task<bool> CheckEmailExistUser(string Email)
+        // {
+        //     return (_context.User.AnyAsync(x => x.email == Email));
+        // }
+        // private Task<bool> CheckEmailExistAdmin(string Email)
+        // {
+        //     return (_context.Admin.AnyAsync(x => x.email == Email));
+        // }
     }
 }
        
