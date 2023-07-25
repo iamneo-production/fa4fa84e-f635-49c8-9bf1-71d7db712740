@@ -53,21 +53,21 @@ namespace User.Controller
             }
 
             
-        [HttpGet("user/GetProfile/{ID}")]
-        public async Task<IActionResult> getProfile(int ID)
-        {
-            var Userprofile = await _context.User.FirstOrDefaultAsync(p => p.ID == ID);
-
-            if (Userprofile == null)
+            [HttpGet("user/GetProfile/{ID}")]
+            public async Task<IActionResult> getProfile(int ID)
             {
-                return NotFound(new
-                {
-                    Message = "No user found"
-                });
-            }
+                var Userprofile = await _context.User.FirstOrDefaultAsync(p => p.ID == ID);
 
-            return Ok(Userprofile);
-        }
+                if (Userprofile == null)
+                {
+                    return NotFound(new
+                    {
+                        Message = "No user found"
+                    });
+                }
+
+                return Ok(Userprofile);
+            }
 
             [HttpDelete("user/deleteProfile/{ID}")]
             public async Task<IActionResult> deleteUser(int ID)
