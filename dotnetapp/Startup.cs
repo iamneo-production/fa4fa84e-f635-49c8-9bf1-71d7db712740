@@ -14,7 +14,11 @@ using Microsoft.OpenApi.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.SqlServer;
 using dotnetapp.Data;
+<<<<<<< HEAD
+
+=======
 using dotnetapp.Controllers;
+>>>>>>> 6c987ce512f4fc065a31e60503736d8dd2a3743a
 
 namespace dotnetapp
 {
