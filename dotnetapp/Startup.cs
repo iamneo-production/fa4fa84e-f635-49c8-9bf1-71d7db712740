@@ -14,7 +14,10 @@ using Microsoft.OpenApi.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.SqlServer;
 using dotnetapp.Data;
+<<<<<<< HEAD
 
+=======
+>>>>>>> 226bf41ce9a196baa46334649c234aa9f7be094a
 using dotnetapp.Controllers;
 
 
