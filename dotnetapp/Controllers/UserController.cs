@@ -32,23 +32,7 @@ namespace User.Controller
                 });
             }
 
-            // [HttpGet("user/getProfile/{ID}")]
-            // public async Task<IActionResult> getProfile(int ID)
-            // {
-            //     var Userprofile = await _context.User.FirstOrDefaultAsync(p => p.ID == ID);
-
-            //     if (Userprofile == null)
-            //     {
-            //         return NotFound(new
-            //         {
-            //             Message = "No user found"
-            //         });
-            //     }
-
-            // return Ok(Userprofile);
-               
-
-           // }
+            
            [HttpGet("user/getProfile")]
             public async Task<IActionResult> getProfiles()
             {
@@ -76,6 +60,7 @@ namespace User.Controller
 
                 if (Userprofile == null)
                 {
+                   
                     return NotFound();
                 }
 
