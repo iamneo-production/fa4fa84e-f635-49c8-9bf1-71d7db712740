@@ -16,8 +16,6 @@ namespace dotnetapp.Data
         public DbSet<LoanApplicantModel> LoanApplicant { get; set; }
         public DbSet<DocumentModel> Document { get; set; }
         public DbSet<AdminModel> Admin { get; set;} 
-        public DbSet<User_Model>Users {get; set;}
-
         
     }
 }
