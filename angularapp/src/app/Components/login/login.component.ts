@@ -3,10 +3,7 @@ import { Router } from '@angular/router';
 import { Validators,FormGroup, FormBuilder } from '@angular/forms';
 import { AuthService } from 'src/app/Services/auth.service';
 import { ToastrService } from 'ngx-toastr';
-// import {
-//   faEye,
-//   faEyeSlash,
-//   }from '@fortawesome/free-solid-svg-icons';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -21,8 +18,7 @@ export class LoginComponent implements OnInit{
       password: ['', Validators.required]
     });
   }
-  // faEye = faEye;
-  // faEyeSlash = faEyeSlash;
+
   passType:string='password';
   showPass:boolean=false;
   EmailId:string;
@@ -37,15 +33,15 @@ export class LoginComponent implements OnInit{
           this.loginForm.reset();
           this.auth.storeToken(res.token);
           console.log(res.token);
-          this.notif.success('SUCCESS', res.message, { timeOut: 3000 });
+          this.notif.success('SUCCESS', res.message, { timeOut: 1000 });
           if (this.auth.getRole() === 'admin') {
-            this.router.navigate(['admin']);
+            this.router.navigate(['admin/getAllLoans']);
           } else {
-            this.router.navigate(['user']);
+            this.router.navigate(['user/addLoan']);
           }
         },
         error: (err) => {
-          this.notif.error('Error', 'Incorrect email and password', {timeOut: 3000,});
+          this.notif.error('Error', 'Incorrect email and password', {timeOut: 1000,});
           alert(err.message);
         },
       });

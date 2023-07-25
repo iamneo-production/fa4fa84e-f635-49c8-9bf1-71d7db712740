@@ -62,3 +62,4 @@
 /home/coder/project/workspace/dotnetapp/obj/Debug/net6.0/dotnetapp.pdb
 /home/coder/project/workspace/dotnetapp/obj/Debug/net6.0/dotnetapp.genruntimeconfig.cache
 /home/coder/project/workspace/dotnetapp/obj/Debug/net6.0/ref/dotnetapp.dll
+/home/coder/project/workspace/dotnetapp/bin/Debug/net6.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll

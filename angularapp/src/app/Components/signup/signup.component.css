@@ -28,7 +28,6 @@ h1{
   
   small {
     color:red;
-    font-size: 10px;
     margin-left: 30%;
   }
   
@@ -60,14 +59,14 @@ h1{
     position: absolute;
     cursor: pointer;
     top: 10px;
-    right: 9px;
+    right: 5px;
     color: black;
   }
   .password-toggle-icon-cp{
     position: absolute;
     cursor: pointer;
     top:10px;
-    right:9px;
+    right:5px;
     color: black;
   }
   .input{
@@ -78,10 +77,6 @@ h1{
     border-radius: 5px;
   }
 
-  small{
-    font-size:20px;
-    font-weight: bold;  
-  }
   form {
     display: flex;
     flex-direction: column;
