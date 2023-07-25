@@ -16,7 +16,11 @@ namespace dotnetapp.Data
         public DbSet<LoanApplicantModel> LoanApplicant { get; set; }
         public DbSet<DocumentModel> Document { get; set; }
         public DbSet<AdminModel> Admin { get; set; }
+<<<<<<< HEAD
     
+=======
+        public DbSet<User_Model>Users {get; set;}
+>>>>>>> 6c987ce512f4fc065a31e60503736d8dd2a3743a
         
     }
 }

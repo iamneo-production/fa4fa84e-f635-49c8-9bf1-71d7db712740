@@ -9,7 +9,6 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using System.Data.SqlClient;
-using System.Threading.Tasks;
 
 namespace Auth.Controller
 {
@@ -110,9 +109,45 @@ namespace Auth.Controller
             };
             await _context.Login.AddAsync(loginObj);
             await _context.SaveChangesAsync();
-            
+            // return Created("User added");
+            // Replace with your actual URI format
+
             return Created("", true);
         }
     }
 }
-        
+        // private string createJwt(UserModel user)
+        // {
+        //     if (user == null)
+        //     {
+        //         throw new ArgumentNullException(nameof(user), "User cannot be null");
+        //     }
+
+        //     var jwtTokenHandler = new JwtSecurityTokenHandler();
+        //     var key = Encoding.ASCII.GetBytes("veryverysecret.....");
+        //     var identity = new ClaimsIdentity(new Claim[]
+        //     {
+        // new Claim(ClaimTypes.Role, user.userRole),
+        // new Claim(ClaimTypes.Email, user.email),
+        // new Claim(ClaimTypes.NameIdentifier, Convert.ToString(user.ID))
+        //     });
+        //     var credentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256);
+        //     var tokenDescriptor = new SecurityTokenDescriptor
+        //     {
+        //         Subject = identity,
+        //         Expires = DateTime.Now.AddDays(1),
+        //         SigningCredentials = credentials
+        //     };
+        //     var token = jwtTokenHandler.CreateToken(tokenDescriptor);
+        //     return jwtTokenHandler.WriteToken(token);
+        // }
+
+
+        // private Task<bool> CheckEmailExistUser(string Email)
+        // {
+        //     return (_context.User.AnyAsync(x => x.email == Email));
+        // }
+        // private Task<bool> CheckEmailExistAdmin(string Email)
+        // {
+        //     return (_context.Admin.AnyAsync(x => x.email == Email));
+        // }

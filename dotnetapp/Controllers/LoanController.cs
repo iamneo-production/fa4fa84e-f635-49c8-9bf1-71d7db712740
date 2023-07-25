@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.IO;
-using System.Threading.Tasks;
 
 namespace Loan.Controller
 {
