@@ -37,11 +37,11 @@ export class SignupComponent implements OnInit {
       userRole: ['', Validators.required],
       email: ['', [Validators.email, Validators.required]],
       username: ['', Validators.required],
-      mobilenumber: ['', Validators.required],
-      password: ['', Validators.required],
+      mobilenumber: ['', [Validators.required,Validators.pattern(/^[6-9]\d{9}$/)]],
+      password:['',[Validators.required,Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$')]],
       confirmpassword: ['', Validators.required]
     }, {
-      validator: this.passwordMatchValidator //using 'this' keyword to refer to instance method
+      validator: this.passwordMatchValidator
     })
   }
   toggle() {
@@ -54,9 +54,7 @@ export class SignupComponent implements OnInit {
     }
   }
    toggleConfirmPass() {
-    // if(this.signupForm.get('password')?.value!==this.signupForm.get('confirmpassword')?.value){
-    //   this.display=true;
-    // }
+
     if (this.showConfirmPass) {
       this.showConfirmPass = false;
       this.confirmPassType = 'password';
@@ -75,13 +73,12 @@ export class SignupComponent implements OnInit {
         .subscribe({
           next: (res => {
             alert(res.message)
-            this.notif.success("Admin Registerd Successfully");
+            this.notif.success('Success',"Admin Registerd Successfully",{timeOut:1000});
             this.SignupForm.reset();
             this.router.navigate(['login']);
           })
           , error: (err => {
-            alert(err?.error.message)
-            this.notif.error('Error', 'Email already registered!!!', { timeOut:3000});
+            this.notif.error('Error', 'Email or Mobile Number is already registered!!!', { timeOut:3000});
           })
         })
       }
@@ -95,20 +92,13 @@ export class SignupComponent implements OnInit {
               this.router.navigate(['login']);
             })
             , error: (err => {
-              alert(err?.error.message)
-              this.notif.error('Error', 'Email already registered!!!', { timeOut:3000});
+              this.notif.error('Error', 'Email or Mobile Number is already registered!!!', { timeOut:3000});
             })
           })
       }
 
 
     }
-    // else {
-    //   ValidateForm.validateAllFormFileds(this.SignupForm);
-    //   alert("Form is invalid");
-    // }
-
-
   }
   private passwordMatchValidator(form: FormGroup) {
     const password = form.get('password')?.value;

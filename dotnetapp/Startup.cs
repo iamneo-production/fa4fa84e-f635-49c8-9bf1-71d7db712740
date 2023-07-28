@@ -16,7 +16,6 @@ using Microsoft.EntityFrameworkCore.SqlServer;
 using dotnetapp.Data;
 using dotnetapp.Controllers;
 
-
 namespace dotnetapp
 {
     public class Startup

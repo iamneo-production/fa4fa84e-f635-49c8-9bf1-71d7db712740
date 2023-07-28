@@ -28,7 +28,8 @@ h1{
   
   small {
     color:red;
-    margin-left: 30%;
+    font-size: large;
+    margin-left: 20%;
   }
   
   button {
@@ -59,14 +60,14 @@ h1{
     position: absolute;
     cursor: pointer;
     top: 10px;
-    right: 5px;
+    right: 9px;
     color: black;
   }
   .password-toggle-icon-cp{
     position: absolute;
     cursor: pointer;
     top:10px;
-    right:5px;
+    right:9px;
     color: black;
   }
   .input{

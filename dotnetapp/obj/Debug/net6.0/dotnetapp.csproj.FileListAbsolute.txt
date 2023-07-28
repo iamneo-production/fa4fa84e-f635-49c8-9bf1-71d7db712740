@@ -9,7 +9,6 @@
 /home/coder/project/workspace/dotnetapp/bin/Debug/net6.0/dotnetapp.pdb
 /home/coder/project/workspace/dotnetapp/bin/Debug/net6.0/Castle.Core.dll
 /home/coder/project/workspace/dotnetapp/bin/Debug/net6.0/Humanizer.dll
-/home/coder/project/workspace/dotnetapp/bin/Debug/net6.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
 /home/coder/project/workspace/dotnetapp/bin/Debug/net6.0/Microsoft.Data.SqlClient.dll
 /home/coder/project/workspace/dotnetapp/bin/Debug/net6.0/Microsoft.EntityFrameworkCore.dll
 /home/coder/project/workspace/dotnetapp/bin/Debug/net6.0/Microsoft.EntityFrameworkCore.Abstractions.dll

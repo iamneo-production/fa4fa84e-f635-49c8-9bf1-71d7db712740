@@ -12,7 +12,7 @@ export class LoanService {
 
   constructor(private http:HttpClient) { }
 
-  private baseUrl:string="https://8080-ebfbaeaaafacdefbeabeacfefaaff.project.examly.io";
+  private baseUrl:string="https://8080-fbdacabdabafefbfafacdefbeabeacfefaaff.project.examly.io";
   
   addLoan(loanData: any): Observable<any> {
     return this.http.post<any>(`${this.baseUrl}/user/addLoan`, loanData);
@@ -51,7 +51,7 @@ export class LoanService {
   }
 
   getProfile(data:string):Observable<signupForm>{
-    return this.http.get<signupForm>(`${this.baseUrl}/user/GetProfile/${data}`);
+    return this.http.get<signupForm>(`${this.baseUrl}/user/getProfile/${data}`);
   }
   editProfile(editUser:signupForm):Observable<signupForm> {
     return this.http.put<signupForm>(`${this.baseUrl}/user/editProfile/${editUser.id}`,editUser);

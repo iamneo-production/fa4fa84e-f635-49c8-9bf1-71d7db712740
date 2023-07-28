@@ -1,4 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
+
 
 namespace dotnetapp.Models
 {
@@ -11,6 +16,5 @@ namespace dotnetapp.Models
         public string mobileNumber { get; set; }
         public string userRole { get; set; }
         public string Token { get; set; }
-
     }
 }

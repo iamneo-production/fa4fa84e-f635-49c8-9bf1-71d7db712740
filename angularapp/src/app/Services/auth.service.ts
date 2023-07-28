@@ -7,21 +7,19 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
   
-  private loginurl:string="https://8080-ebfbaeaaafacdefbeabeacfefaaff.project.examly.io"
-  private adminsignupurl:string="https://8080-ebfbaeaaafacdefbeabeacfefaaff.project.examly.io"
-  private usersignupurl:string="https://8080-ebfbaeaaafacdefbeabeacfefaaff.project.examly.io"
+  private Baseurl:string="https://8080-fbdacabdabafefbfafacdefbeabeacfefaaff.project.examly.io"
   
   constructor(private http:HttpClient,private router:Router) { }
   adminsignup(adminobj:any){
-    return this.http.post<any>(`${this.adminsignupurl}/admin/signup`,adminobj);
+    return this.http.post<any>(`${this.Baseurl}/admin/signup`,adminobj);
   } 
 
    usersignup(userobj:any){
-     return this.http.post<any>(`${this.usersignupurl}/user/signup`,userobj);
+     return this.http.post<any>(`${this.Baseurl}/user/signup`,userobj);
   }
 
   login(loginobj:any ){
-    return this.http.post<any>(`${this.loginurl}/login`,loginobj);
+    return this.http.post<any>(`${this.Baseurl}/login`,loginobj);
   }
  
 

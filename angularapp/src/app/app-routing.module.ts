@@ -24,7 +24,6 @@ const routes: Routes = [
   {path:'admin/GetAllLoans',component:AdminapprovedloanComponent,canActivate:[AuthGuard]},
   {path:'admin',component:AdmindashboardComponent,canActivate:[AuthGuard]},
   {path:'user/addDocuments',component:DocumentComponent,canActivate:[AuthGuard]},
-
 ];
 
 @NgModule({

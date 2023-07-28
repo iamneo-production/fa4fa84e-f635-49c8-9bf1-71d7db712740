@@ -1,6 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNetCore.Http;
+
 
 namespace dotnetapp.Models
 {
@@ -18,6 +23,5 @@ namespace dotnetapp.Models
         public byte[] documentupload { get; set; }
 
         public string documentVerified { get; set; }
-
     }
 }
