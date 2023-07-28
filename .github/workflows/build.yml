@@ -25,3 +25,4 @@ jobs:
             -Dsonar.projectKey=iamneo-production_fa4fa84e-f635-49c8-9bf1-71d7db712740
             -Dsonar.organization=iamneo-production -Dsonar.sources=
             -Dsonar.verbose=true
+GIT
