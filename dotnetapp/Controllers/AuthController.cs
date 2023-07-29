@@ -25,6 +25,7 @@ namespace Auth.Controller
 
         }
 
+<<<<<<< HEAD
        [HttpPost("login")]
         public async Task<IActionResult> login([FromBody] LoginModel obj)
         {
@@ -83,6 +84,74 @@ namespace Auth.Controller
             };
             var token = jwtTokenHandler.CreateToken(tokenDescriptor);
             return jwtTokenHandler.WriteToken(token);
+=======
+
+        [HttpPost("admin/signup")]
+        public async Task<IActionResult> saveAdmin([FromBody] AdminModel adminobj)
+        {
+            if (adminobj == null)
+            {
+                return BadRequest();
+            }
+            if (await CheckEmailExistAdmin(adminobj.email)) return BadRequest(new { Message = "Email Already Exist!!! " });
+            if (await CheckEmailExistUser(adminobj.email)) return BadRequest(new { Message = "Email Already Exist!!!" });
+            if (await CheckMobileExistUser(adminobj.mobileNumber)) return BadRequest(new { Message = "Mobile Number Already Exist!!! " });
+            if (await CheckMobileExistAdmin(adminobj.mobileNumber)) return BadRequest(new { Message = "Mobile number  Already Exist!!! " });
+            await _context.Admin.AddAsync(adminobj);
+            await _context.SaveChangesAsync();
+            var admin = new AdminModel
+            {
+                email = adminobj.email,
+                password = adminobj.password,
+                mobileNumber = adminobj.mobileNumber,
+                userRole = adminobj.userRole
+            };
+            await _context.Admin.AddAsync(admin);
+            await _context.SaveChangesAsync();
+            return Ok(new
+            {
+                Message = "Admin added"
+            });
+        }
+        [HttpPost("user/signup")]
+        public async Task<IActionResult> saveUser([FromBody] UserModel userobj)
+        {
+            if (userobj == null)
+            {
+                return BadRequest();
+            }
+            if (await CheckEmailExistAdmin(userobj.email)) return BadRequest(new { Message = "Email Already Exist!!! " });
+            if (await CheckEmailExistUser(userobj.email)) return BadRequest(new { Message = "Email Already Exist!!! " });
+            if (await CheckMobileExistUser(userobj.mobileNumber)) return BadRequest(new { Message = "Mobile Number Already Exist!!! " });
+            if (await CheckMobileExistAdmin(userobj.mobileNumber)) return BadRequest(new { Message = "Mobile number  Already Exist!!! " });
+            await _context.User.AddAsync(userobj);
+            await _context.SaveChangesAsync();
+            var loginObj = new LoginModel
+            {
+                email = userobj.email,
+                password = userobj.password
+            };
+            await _context.Login.AddAsync(loginObj);
+            await _context.SaveChangesAsync();
+            return Created("", true);
+        }
+
+        private Task<bool> CheckEmailExistUser(string Email)
+        {
+            return (_context.User.AnyAsync(x => x.email == Email));
+        }
+        private Task<bool> CheckEmailExistAdmin(string Email)
+        {
+            return (_context.Admin.AnyAsync(x => x.email == Email));
+        }
+        private Task<bool> CheckMobileExistUser(string mobile )
+        {
+            return (_context.User.AnyAsync(x => x.mobileNumber == mobile));
+        }
+        private Task<bool> CheckMobileExistAdmin(string mobile)
+        {
+            return (_context.User.AnyAsync(x => x.mobileNumber == mobile));
+>>>>>>> 8827df344d084f1d53c1da1aea0888054dacc568
         }
     }
 
