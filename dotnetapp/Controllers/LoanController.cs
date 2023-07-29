@@ -18,7 +18,37 @@ namespace Loan.Controller
         {
             _context = applicationdbcontext;
         }
-        
+        [HttpPost("user/addLoan")]
+        public async Task<IActionResult> addLoan([FromBody] LoanApplicantModel loanobj)
+        {
+            if (loanobj == null)
+            {
+                return BadRequest();
+            }
+
+            await _context.LoanApplicant.AddAsync(loanobj);
+            await _context.SaveChangesAsync();
+            string loanAmountRequired = loanobj.loanAmountRequired;
+            string loanRepayMonths = loanobj.loanRepaymentMonths;
+            string salary = loanobj.applicantSalary;
+
+            decimal loanAmount = Convert.ToDecimal(loanAmountRequired);
+            int loanMonths = Convert.ToInt32(loanRepayMonths);
+            decimal applicantsalary = Convert.ToDecimal(salary);
+
+            decimal totalRepaymentAmount = loanMonths * applicantsalary;
+            decimal interestAmount = totalRepaymentAmount - loanAmount;
+            decimal monthlyInterestRate = (interestAmount / loanAmount) / loanMonths / 100;
+            decimal emi = loanAmount * monthlyInterestRate *
+                          (decimal)Math.Pow(1 + (double)monthlyInterestRate, loanMonths) /
+                          ((decimal)Math.Pow(1 + (double)monthlyInterestRate, loanMonths) - 1);
+
+            loanobj.MonthlyEMI = emi;
+
+            await _context.SaveChangesAsync();
+
+            return Ok(new { message = "success" });
+        }
 
         [HttpPut("user/editLoan/{loanId}")]
         public async Task<IActionResult> editLoan(int loanId, [FromBody] LoanApplicantModel loanApplicantModel)
@@ -117,6 +147,114 @@ namespace Loan.Controller
             {
                 Message = "Delete loanapplication",
                 loandetails = Loandetails
+            });
+        }
+        [HttpPost("user/addDocuments")]
+        public async Task<IActionResult> AddDocument([FromForm] DocumentModel documentModel)
+        {
+            if (documentModel == null || documentModel.DocumentUploads == null)
+            {
+                return BadRequest();
+            }
+
+            using (var memoryStream = new MemoryStream())
+            {
+                await documentModel.DocumentUploads.CopyToAsync(memoryStream);
+                documentModel.documentupload = memoryStream.ToArray();
+
+                _context.Document.Add(documentModel);
+                await _context.SaveChangesAsync();
+
+
+
+                return Ok(documentModel.documentId);
+            }
+        }
+         [HttpGet("user/getDocuments/{loanId}")]
+         public async Task<IActionResult> getDocuments(int loanId)
+         {
+
+            var appliedLoanDocs = await _context.Document.FirstOrDefaultAsync(p => p.documentId == loanId);
+
+            if (appliedLoanDocs == null)
+            {
+                return Ok(new
+                 {
+                    Message = "No document found"
+               });
+             }
+
+             return Ok(appliedLoanDocs);
+         }
+
+
+
+         [HttpGet("user/getDocuments")]
+            public async Task<IActionResult> getDocuments()
+            {
+                var UserDocuments = await _context.User.ToListAsync();
+
+                if (UserDocuments == null || UserDocuments.Count == 0)
+                {
+                    return NotFound(new
+                    {
+                        Message = "No user found"
+                    });
+                }
+
+                return Ok(new
+                {
+                    Message = "View Documents",
+                    UserDetails = UserDocuments
+                });
+
+            }
+
+
+
+        [HttpPut("user/editDocuments/{documentId}")]
+        public async Task<IActionResult> editDocuments(int documentId, [FromBody] DocumentModel documentModel)
+        {
+            if (documentModel == null || documentId != documentModel.documentId)
+            {
+                return BadRequest();
+            }
+
+            var Documentdetails = await _context.Document.FindAsync(documentId);
+
+            if (Documentdetails == null)
+            {
+                return NotFound();
+            }
+            Documentdetails.documenttype = documentModel.documenttype;
+            Documentdetails.documentupload = documentModel.documentupload;
+            _context.Document.Update(Documentdetails);
+            await _context.SaveChangesAsync();
+
+            return Ok(new
+            {
+                Message = "Edit documents",
+                loandetails = Documentdetails
+            });
+        }
+
+        [HttpDelete("user/deletedocuments/{documentId}")]
+        public async Task<IActionResult> deletedocuments(int documentId)
+        {
+            var documentdetails = await _context.Document.FindAsync(documentId);
+
+            if (documentdetails == null)
+            {
+                return NotFound();
+            }
+
+            _context.Document.Remove(documentdetails);
+            await _context.SaveChangesAsync();
+
+            return Ok(new
+            {
+                Message = "Delete documents",
+                loandetails = documentdetails
             });
         }
     }
